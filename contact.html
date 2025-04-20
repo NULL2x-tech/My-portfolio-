@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact - NULL2X</title>
+
+  <!-- Font Awesome & AOS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
+        NULL <span>2X</span>
+      </div>
+      <div class="links">
+        <div class="link"><a href="index.html">Home</a></div>
+        <div class="link"><a href="about.html">About</a></div>
+        <div class="link"><a href="#">Skills</a></div>
+        <div class="link"><a href="#">Services</a></div>
+        <div class="link"><a href="#">Contact</a></div>
+      </div>
+      <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+    </div>
+  
+    <!-- Dropdown Menu -->
+    <div class="dropdown">
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="/skills.html">Skills</a>
+        <a href="service.html">Services</a>
+        <a href="contact.html">Contact</a>
+        <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="main-container">
+      <h1 data-aos="fade-up" data-aos-duration="1000">Get in <span>Touch</span></h1>
+      <p data-aos="fade-up" data-aos-duration="1200">Feel free to drop your feedback or questions below. I’ll get back to you as soon as possible!</p>
+
+      <form action="https://formsubmit.co/vishwajee2kumar@gmail.com" method="POST" data-aos="zoom-in" data-aos-duration="1400">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" rows="4" placeholder="Your Feedback" required></textarea>
+
+        <!-- Hidden fields to customize FormSubmit -->
+        <input type="hidden" name="_subject" value="New Feedback Received!" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
+
+        <button type="submit">Submit Feedback</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- AOS Script -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>AOS.init({ offset: 0 });</script>
+<script src="main.js"></script>
+</body>
+</html>
