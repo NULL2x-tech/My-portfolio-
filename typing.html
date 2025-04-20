@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Word Typing Game</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      color: #00ffff;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .word {
+      font-size: 2rem;
+      font-weight: bold;
+      background: #222;
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+      color: #00ffff;
+    }
+
+    input {
+      padding: 12px 20px;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      background: #333;
+      color: #fff;
+      width: 300px;
+    }
+
+    .score {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #90ee90;
+    }
+
+    .timer {
+      margin-top: 10px;
+      color: #ccc;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 10px 20px;
+      background: #00ffff;
+      color: #111;
+      border: none;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #00cccc;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Typing Challenge</h1>
+  <div class="word" id="word">loading...</div><br>
+  <input type="text" id="input" placeholder="Type the word..." autocomplete="off" />
+  <div class="score">Score: <span id="score">0</span></div>
+  <div class="timer">Time Left: <span id="time">30</span>s</div>
+  <button onclick="restartGame()">Restart</button>
+
+  <script>
+    const words = [
+      "code", "javascript", "function", "developer", "design",
+      "logic", "variable", "project", "null2x", "keyboard",
+      "syntax", "debug", "frontend", "backend", "array",
+      "object", "loop", "typing", "script", "element"
+    ];
+
+    const wordEl = document.getElementById("word");
+    const inputEl = document.getElementById("input");
+    const scoreEl = document.getElementById("score");
+    const timeEl = document.getElementById("time");
+
+    let score = 0;
+    let time = 30;
+    let currentWord = "";
+
+    function getRandomWord() {
+      return words[Math.floor(Math.random() * words.length)];
+    }
+
+    function showWord() {
+      currentWord = getRandomWord();
+      wordEl.textContent = currentWord;
+      inputEl.value = "";
+      inputEl.focus();
+    }
+
+    function updateScore() {
+      score++;
+      scoreEl.textContent = score;
+    }
+
+    function startTimer() {
+      const timer = setInterval(() => {
+        time--;
+        timeEl.textContent = time;
+        if (time === 0) {
+          clearInterval(timer);
+          wordEl.textContent = "Time's up!";
+          inputEl.disabled = true;
+        }
+      }, 1000);
+    }
+
+    inputEl.addEventListener("input", () => {
+      if (inputEl.value.trim().toLowerCase() === currentWord.toLowerCase()) {
+        updateScore();
+        showWord();
+      }
+    });
+
+    function restartGame() {
+      score = 0;
+      time = 30;
+      scoreEl.textContent = score;
+      timeEl.textContent = time;
+      inputEl.disabled = false;
+      showWord();
+      startTimer();
+    }
+
+    restartGame();
+    function startTimer() {
+  let interval = 1000; // Start slow
+  let timer = setInterval(() => {
+    time--;
+    timeEl.textContent = time;
+
+    // Increase difficulty as score rises
+    if (score >= 5) interval = 850;
+    if (score >= 10) interval = 700;
+    if (score >= 15) interval = 550;
+    if (score >= 20) interval = 400;
+
+    if (time <= 0) {
+      clearInterval(timer);
+      wordEl.textContent = "Time's up!";
+      inputEl.disabled = true;
+    }
+  }, interval);
+
+  // Dynamically update interval
+  let difficultyUpdater = setInterval(() => {
+    clearInterval(timer);
+    if (time > 0) startTimer();
+    clearInterval(difficultyUpdater);
+  }, interval + 100);
+}
+  </script>
+</body>
+</html>
