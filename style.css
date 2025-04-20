@@ -104,17 +104,24 @@ section{
     justify-content: space-evenly;
     align-items: center;
 }
-.main-container .image {
-  width: 500px;
-  height: 80vh;
-  border-radius: 50%;
-  overflow: hidden;
-  box-shadow: 0 0 50px #077b32;
+.main-container .image{
+
+width: 500px;
+
+height: 80vh;
+
+border-radius: 100%;
+
+overflow: auto;
+
+box-shadow: 0 0 50px #077b32;
+
 }
 
-.main-container .image img {
-  width: 100%;
-  /* ye crop karke image ko perfect circle ke andar fit karega */
+.main-container image img{
+
+width: 100%;
+
 }
 .main-container .image:hover{
     animation: animate 1.5s ease-in-out infinite;
